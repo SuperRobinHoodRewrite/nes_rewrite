@@ -14,6 +14,9 @@ $(PROGRAM): $(SOURCES:.asm=.o)
 %.o: %.asm
 	$(CA) -g -o $@ $<
 
+all: $(PROGRAM)
+	python3 scripts/export_symbols.py
+
 clean:
 	$(RM) $(SOURCES:.asm=.o) $(SOURCES:.asm=.d) $(PROGRAM) $(PROGRAM).map $(PROGRAM).dbg $(PROGRAM).labels.txt
 

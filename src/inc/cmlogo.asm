@@ -1,6 +1,6 @@
 .segment "CODE"
 CM_USERNMI = 1
-CM_SPAGE   = $0300
+CM_SPAGE   = $0600
 CM_YEAR    = 1993
 
 ;	if absolutely=1
@@ -56,7 +56,7 @@ CM_LOGO:
 	BEQ @RESET
 @POWERUP:
 	STY cm_powerup
-	LDA #$00
+	LDA #$01
 @RESET:
 	STA cm_flags
 
@@ -112,7 +112,6 @@ CM_LOGO:
 	LDA CM_ABMAP,X
 	STA $2006
 	INX
-
 	LDY CM_ABMAP,X
 	INX
 
@@ -333,7 +332,6 @@ CM_LOOP:
 	JMP CM_LOOP
 
 @TIMEOUT:
-
 	LDA #$00
 	STA $2000
 	STA $2001
@@ -815,7 +813,7 @@ CM_ABMAP:
     .byte $22, $E5, $15, $6C, $6D, $6E, $6F, $70, $71, $63, $72, $70, $73, $00, $6D, $74, $75, $70, $70, $75, $6C, $76, $77, $78
 
 	;IF CM_YEAR = 1992
-	;HEX 232515797A7B7C7D7E7F808182838485868788898A8B8C8D
+	;.byte $23, $25, $15, $79, $7A, $7B, $7C, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 	;ELSE
     .byte $23, $25, $15, $79, $7A, $7B, $90, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 	;ENDIF

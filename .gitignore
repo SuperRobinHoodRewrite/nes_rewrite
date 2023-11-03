@@ -3,3 +3,5 @@
 *.labels.txt
 *.nes.map
 *.o
+*.nl
+*.fdb
