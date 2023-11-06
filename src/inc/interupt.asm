@@ -44,24 +44,24 @@ interupt:				;;;do all sending of chrs etc 1st
     ;endif
     jsr readkeypads
 
-    ;if musicon=1
-    ;lda #13
-    ;sta bank.tbl+13
-    ;jsr fx_play
-    ;lda bankno
-    ;jsr changebankrou1
-    ;endif
+    .if musicon=1
+    lda #13
+    sta banktable+13
+    jsr fx_play
+    lda bankno
+    jsr changebankrou1
+    .endif
 dontdointerupt:
-    ;if musicon=1
-    ; lda pause
-    ; bne @1	
-    ; lda #13
-    ; sta bank.tbl+13
-    ; jsr play_music
-    ; lda bankno
-    ; jsr changebankrou1
+    .if musicon=1
+    lda pause
+    bne @1	
+    lda #13
+    sta banktable+13
+    jsr play_music
+    lda bankno
+    jsr changebankrou1
 @1:
-;    endif
+    .endif
 
     pla
     tay

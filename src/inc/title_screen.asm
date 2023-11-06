@@ -12,14 +12,13 @@ stillintitle:
     sta solidfound
     and #1
     beq showtitle
-    
 sethiscore:
     lda solidfound
     and #127
     lsr
     eor #255
     sta hipos
-; 	jsr setuphiscores ; turned off to simplify current setup
+ 	jsr setuphiscores
  	jmp turnonscreen
 showtitle:
     jsr setuptitlescreen
@@ -70,10 +69,10 @@ putontitlesprites:
     lda #titlelogos
     jsr printsprite
     
-;	ldx #176
-;	ldy #26*8+2-ydisplace
-;	lda #titlelogos+1
-;	jsr printsprite
+	;; ldx #176
+	;; ldy #26*8+2-ydisplace
+	;; lda #titlelogos+1
+	;; jsr printsprite
     
     ldx #128-8
     ldy #24*8-ydisplace
@@ -135,7 +134,7 @@ titlescreenmess:
     .byte mdownline,mlen,26
     .byte $2B, $6A, $6F, $70, $73, $74, $04, $09, $0A, $0B, $1F, $20, $20, $20, $20, $87, $88, $89, $90, $91, $92, $93, $95, $96, $20, $20
     .byte mjump
-    .word titlescreenmess2
+    .addr titlescreenmess2
 titlescreenmess2:
     .byte mdownline,mlen,26
     .byte $6B, $6C, $70, $75, $76, $77, $79, $0C, $0D, $7A, $82, $20, $20, $20, $87, $20, $20, $20, $20, $20, $20, $20, $97, $98, $99, $20

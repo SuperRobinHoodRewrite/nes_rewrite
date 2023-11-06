@@ -1,3 +1,8 @@
+; Comment (gerwazy102)
+; I'm not sure if this code ever worked or I messed up something big here :D
+; This code is responsible for rendering CodeMasters logo.
+; It uses cm_nmi nmi handler to increment cm_frames on each v-blank
+
 .segment "CODE"
 CM_USERNMI = 1
 CM_SPAGE   = $0600
@@ -728,7 +733,7 @@ CM_NOISESTART = 24
 CM_NOISELEN   = 56
 CM_TRIANGLEN  = 44
 CM_INITTAB: .byte $5C, $18, $49, $F1, $9F
-	;HEX 5C1809F18F
+	        ;.byte $5C, $18, $09, $F1, $8F
 
 CM_STDATA:
 	.byte $88, $2F, $30
@@ -752,7 +757,7 @@ CM_COLFADE:
     .byte $04, $04, $13
     .byte $03, $14, $12
     .byte $02, $16, $11
-    .byte $01, $18, $11
+    ;.byte $01, $18, $11
     .byte $80
 
 
@@ -809,24 +814,24 @@ mess93:
 
 
 CM_ABMAP:
-    .byte $22, $C5, $15, $5F, $60, $61, $62, $63, $64, $65, $66, $63, $67, $00, $60, $60, $68, $63, $63, $68, $5F, $69, $6A, $6B
-    .byte $22, $E5, $15, $6C, $6D, $6E, $6F, $70, $71, $63, $72, $70, $73, $00, $6D, $74, $75, $70, $70, $75, $6C, $76, $77, $78
+    ;.byte $22, $C5, $15, $5F, $60, $61, $62, $63, $64, $65, $66, $63, $67, $00, $60, $60, $68, $63, $63, $68, $5F, $69, $6A, $6B
+    ;.byte $22, $E5, $15, $6C, $6D, $6E, $6F, $70, $71, $63, $72, $70, $73, $00, $6D, $74, $75, $70, $70, $75, $6C, $76, $77, $78
 
 	;IF CM_YEAR = 1992
 	;.byte $23, $25, $15, $79, $7A, $7B, $7C, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 	;ELSE
-    .byte $23, $25, $15, $79, $7A, $7B, $90, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
+    ;.byte $23, $25, $15, $79, $7A, $7B, $90, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 	;ENDIF
 
 
 
 
-;	HEX 22C5155F606162636465666367006060686363685F696A6B
-;	HEX 22E5156C6D6E6F707163727073006D74757070756C767778
+	.byte $22, $C5, $15, $5F, $60, $61, $62, $63, $64, $65, $66, $63, $67, $00, $60, $60, $68, $63, $63, $68, $5F, $69, $6A, $6B
+	.byte $22, $E5, $15, $6C, $6D, $6E, $6F, $70, $71, $63, $72, $70, $73, $00, $6D, $74, $75, $70, $70, $75, $6C, $76, $77, $78
 ;	IF CM_YEAR=1991
-;	HEX 232515797A7B7C7D7E7F808182838485868788898A8B8C8D
+;	.byte $23, $25, $15, $79, $7A, $7B, $7C, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 ;	ELSE
-;	HEX 232515797A7B907D7E7F808182838485868788898A8B8C8D
+	.byte $23, $25, $15, $79, $7A, $7B, $90, $7D, $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $8A, $8B, $8C, $8D
 ;	ENDIF
 
 	;cmname
@@ -880,11 +885,13 @@ CM_CHARACTERS:
 	sta _vramaddr
 	ldx #0
 @1:
-	lda chr3,x
-	sta _vramdata
-	inx
-	cpx #16
-	bne @1
+    ; gerwazy102(comment): below code for some reason loads mess
+    ; to first tile in ppu.
+	; lda chr3,x
+	; sta _vramdata
+	; inx
+	; cpx #16
+	; bne @1
 	rts
 
 

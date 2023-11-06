@@ -41,8 +41,17 @@ coinnum: .res 1
 filledblockbuffer: .res 1
 riseup: .res 1
 ingame: .res 1
-; zeropage vars
 
+chrfound: .res 1
+blockfound: .res 1
+blockx: .res 1
+blocky: .res 1
+minmap: .res 1
+maxmap: .res 1
+
+completedgame: .res 1
+
+; zeropage vars
 .segment "ZEROPAGE"
 
 current_bank: .res 1
@@ -99,6 +108,16 @@ temp7: .res 1
 temp8: .res 1
 temp9: .res 1
 
+
+scrxl: .res 1
+scrxh: .res 1
+mapstrip: .res 1
+attripointer: .res 1
+blockattri: .res 1
+mappointer: .res 2
+mapno: .res 1
+
+
 solidfound: .res 1
 
 lives: .res 1
@@ -142,7 +161,7 @@ blockbuffer = $170      ;this leaves 112 for vrambuffer
 absolutely	= 1
 title	    = 1
 hiscore	    = 1
-musicon	    = 1
+musicon	    = 0
 
 testpause	= 0
 startlevel	= 5

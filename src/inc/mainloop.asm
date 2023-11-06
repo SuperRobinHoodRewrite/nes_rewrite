@@ -2,43 +2,43 @@
 
 anewgame:
     ; if title=1
-    ; changebank 13
+     changebank 13
     jsr titlescreen
-    ; changebank 12
+     changebank 12
     ; endif
 ; BELOW CODE NEEDS CLEANING UP STILL
-;     jsr clearfullspriteblock
+     jsr clearfullspriteblock
 
-;     flybackvar
-;     lda #0
-;     sta completedgame
-; startlives:
-;     ldx #3
-;     lda pad
-;     and #lmask+amask
-;     cmp #lmask+amask
-;     bne normal3lives
-;     ldx #4
-; normal3lives:
-;     stx lives
-;     lda #0
-;     sta hearts
-;     jsr resetscore
-;     jsr resetextras
+     flybackvar
+     lda #0
+     sta completedgame
+startlives:
+    ldx #3
+    lda pad
+    and #lmask+amask
+    cmp #lmask+amask
+    bne normal3lives
+    ldx #4
+normal3lives:
+    stx lives
+    lda #0
+    sta hearts
+   ; jsr resetscore
+   ; jsr resetextras
 
-;     lda #1
-;     sta ingame
+    lda #1
+    sta ingame
 
-;     lda #robinchrs0.255
-;     jsr copyblockofcompactedchrs
+    lda #robinchrs_index
+    jsr copyblockofcompactedchrs
 
-;     jsr resetrobinvars
+    jsr resetrobinvars
 
-;     jsr resetrobinvars1
+    ;jsr resetrobinvars1
 
-;     lda #startlevel
-;     sta mapno
-;     jsr gointonewmap
+    ;lda #startlevel
+    sta mapno
+;    jsr gointonewmap
 
 ; ingameloop:
 ;     lda #0

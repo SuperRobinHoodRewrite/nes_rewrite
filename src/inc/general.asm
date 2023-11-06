@@ -96,7 +96,7 @@ clearfullspriteblock:
 sendspriteblock:
     lda #0
     sta _spriteaddr
-    lda #<spriteblock	
+    lda #>spriteblock	
     sta $4014	
     rts
 ;--------------------------------------------------
@@ -110,7 +110,9 @@ starttune:
     lda #0
     sta $4015
     tya
-    ;jsr start_music ; commented out to simplify current setup
+.if musicon = 1
+    jsr start_music ; commented out to simplify current setup
+.endif
     pla
     jmp changebankrou
 ;--------------------------------------------------------

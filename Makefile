@@ -12,7 +12,7 @@ $(PROGRAM): $(SOURCES:.asm=.o)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 %.o: %.asm
-	$(CA) -g -o $@ $<
+	$(CA) -g -o $@ $< -v
 
 all: $(PROGRAM)
 	python3 scripts/export_symbols.py
